@@ -1,0 +1,17 @@
+{% url "code_req.verify" as verify_url %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<form action="{{ verify_url }}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <div class="form-actions">
+        <button type="submit">Get!</button>
+    </div>
+</form>
+
+</body>
+</html>

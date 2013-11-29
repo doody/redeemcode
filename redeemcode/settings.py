@@ -82,6 +82,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# Template loader
+TEMPLATE_LOADERS = (
+    'django.template.loaders.filesystem.Loader',
+    'django.template.loaders.app_directories.Loader',
+)
+
 # Heroku settings
 # Parse database configuration from $DATABASE_URL
 import dj_database_url
@@ -100,5 +106,5 @@ STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
-            os.path.join(BASE_DIR, 'static'),
-            )
+        os.path.join(BASE_DIR, 'static'),
+        )

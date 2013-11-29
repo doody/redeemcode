@@ -1,0 +1,18 @@
+{% url "code_req.request" as request_url %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<form action="{{ request_url }}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <div class="form-actions">
+        <button type="submit">Redeem!</button>
+    </div>
+</form>
+
+</body>
+</html>
