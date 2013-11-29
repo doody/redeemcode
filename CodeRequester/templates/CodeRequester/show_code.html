@@ -1,0 +1,10 @@
+{% extends "CodeRequester/base.html" %}
+
+{% block content_body %}
+    <form class="ui error form segment" id="redeem-form">
+        <div class="field">
+            <h3 class="header">Your code is : </h3>
+            <input value="{{ redeem_code.code }}" type="text"/>
+        </div>
+    </form>
+{% endblock %}

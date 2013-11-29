@@ -20,7 +20,7 @@ def request_code(request):
 
                 # Check if redeemed object is larger than limit
                 if user.redeemed_objects.count() >= REDEEM_OBTAIN_LIMIT:
-                    return HttpResponse('Exceed Limit')
+                    return render(request, 'CodeRequester/error_message.html', {'message': 'Exceed Redeem Limit'})
 
             except User.DoesNotExist:
                 # Create new user info
@@ -43,7 +43,7 @@ def request_code(request):
                     else:
                         break
 
-            return HttpResponse(redeem_code.code)
+            return render(request, 'CodeRequester/show_code.html', {'redeem_code': redeem_code})
 
     else:
         form = RequestForm()
@@ -62,7 +62,7 @@ def code_verify(request):
 
                 # Check if redeemed object is larger than limit
                 if code.user.redeemed_objects.count() >= REDEEM_OBTAIN_LIMIT:
-                    return HttpResponse('Exceed Limit')
+                    return render(request, 'CodeRequester/error_message.html', {'message': 'Exceed Redeem Limit'})
 
                 redeem_object = RedeemObject.objects.order_by('?')[0]  # Get random object for user to redeem
                 code.user.redeemed_objects.add(redeem_object)
@@ -70,7 +70,7 @@ def code_verify(request):
             except RedeemCode.DoesNotExist:
                 return redirect('request')
 
-            return HttpResponse(redeem_object.name)
+            return render(request, 'CodeRequester/show_object.html', {'redeem_object': redeem_object})
 
     else:
         form = CodeVerifyForm()

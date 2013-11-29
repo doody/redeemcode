@@ -1,0 +1,42 @@
+{% url "request" as request_url %}
+{% url "verify" as verify_url %}
+<!DOCTYPE html>
+<html>
+<head>
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/0.9.3/css/semantic.css">
+    <style>
+        body {
+            width: 100%;
+            height: 100%;
+            background-image: url("https://dl.dropboxusercontent.com/u/281688/ricepaper_v3.png");
+        }
+        #redeem-form {
+            width: 500px;
+            height: 300px;
+            margin: auto;
+            overflow: auto;
+            position: absolute;
+            top: 0; left: 0; bottom: 0; right: 0;
+        }
+        .form-action {
+            text-align: center;
+        }
+        h1 { font-family: 'Metrophobic', Arial, serif; font-weight: 400; }
+        h3 { font-family: 'Metrophobic', Arial, serif; font-weight: 200; }
+    </style>
+    <title></title>
+</head>
+<body>
+<div class="ui teal inverted menu">
+  <a class="item" href="{{ request_url }}">
+    Get Your Code
+  </a>
+  <a class="item" href="{{ verify_url }}">
+    Get Your Gift
+  </a>
+</div>
+{% block content_body %}
+{% endblock %}
+</body>
+</html>

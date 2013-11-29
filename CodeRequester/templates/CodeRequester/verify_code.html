@@ -1,17 +1,24 @@
-{% url "code_req.verify" as verify_url %}
-<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-</head>
-<body>
-<form action="{{ verify_url }}" method="post">
-    {% csrf_token %}
-    {{ form }}
-    <div class="form-actions">
-        <button type="submit">Get!</button>
-    </div>
-</form>
+{% extends "CodeRequester/base.html" %}
 
-</body>
-</html>
+{% block content_body %}
+    <form class="ui error form segment" action="{{ verify_url }}" method="post" id="redeem-form">
+        {% csrf_token %}
+        {% if form.code.errors %}
+            <div class="ui error message">
+                <div class="header">Error in you code</div>
+                {% for error in  form.code.errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+        <div class="field">
+            <input id="{{ form.code.id_for_label }}"
+                   name="{{ form.code.html_name }}"
+                   type="text"
+                   placeholder="Enter your redeem code here"/>
+        </div>
+        <div class="form-action">
+            <button class="ui blue submit button" type="submit">Redeem!</button>
+        </div>
+    </form>
+{% endblock %}

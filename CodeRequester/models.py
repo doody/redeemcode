@@ -12,9 +12,15 @@ class User(models.Model):
     email = models.EmailField()
     redeemed_objects = models.ManyToManyField(RedeemObject, null=True, blank=True)
 
+    def __unicode__(self):
+        return self.email
+
 
 class RedeemCode(models.Model):
     code = models.CharField(max_length=8, unique=True)
     createTime = models.DateTimeField(auto_now_add=True)
     isValid = models.BooleanField(default=True)
     user = models.ForeignKey(User)
+
+    def __unicode__(self):
+        return self.code
